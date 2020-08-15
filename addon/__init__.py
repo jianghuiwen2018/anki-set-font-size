@@ -23,19 +23,14 @@ from aqt.qt import *
 
 config = mw.addonManager.getConfig(__name__)
 font_size = config['font_size']
+font_family = config['font_family']
 
-def changeGlobalFontSize():
-    font = QApplication.font()
-    font.setPixelSize(font_size)
-    QApplication.setFont(font)
-
-def changeWebFontSize():
+def changeWebFont():
     wes = QWebEngineSettings.globalSettings()
-    #wes.setFontSize(QWebEngineSettings.DefaultFontSize, font_size)
-    wes.setFontSize(QWebEngineSettings.MinimumFontSize, font_size)
+    wes.setFontSize(QWebEngineSettings.DefaultFontSize, font_size)
+    wes.setFontFamily(QWebEngineSettings.StandardFont, font_family)
 
-def changeFontSize():
-    changeGlobalFontSize()
-    changeWebFontSize()
+def changeFont():
+    changeWebFont()
 
-changeFontSize()
+changeFont()
